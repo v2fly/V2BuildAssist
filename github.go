@@ -41,7 +41,7 @@ func GetReleaseFile(accessToken, owner, repo, tag, path string) ([]byte, int64, 
 	id := *rele.ID
 	for _, v := range rele.Assets {
 		if *v.Name == path {
-			url := v.GetURL()
+			url := v.GetBrowserDownloadURL()
 			resp, err := http.Get(url)
 			if err != nil {
 				return nil, 0, err

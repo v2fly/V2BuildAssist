@@ -52,7 +52,7 @@ func main() {
 	case "sign":
 		password := os.Args[1+argoffset]
 		version := os.Args[2+argoffset]
-		project := os.Args[2+argoffset]
+		project := os.Args[3+argoffset]
 		fmt.Println(V2BuildAssist.RequestForSign(token, Sowner, Sname, project, owner, name, version, password, Skey))
 	}
 }
