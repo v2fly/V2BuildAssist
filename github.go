@@ -71,8 +71,7 @@ func CreateCommentForCommit(accessToken, owner, repo, sha, message string) (stri
 func CreateCommentForPR(accessToken, owner, repo, message string, number int) (string, error) {
 	ctx := context.Background()
 	client := getclient(accessToken, ctx)
-
-	f, _, err := client.PullRequests.CreateComment(ctx, owner, repo, number, &github.PullRequestComment{Body: &message})
+	f, _, err := client.Issues.CreateComment(ctx, owner, repo, number, &github.IssueComment{Body: &message})
 	if err != nil {
 		return "", err
 	}
