@@ -8,6 +8,7 @@ import (
 	"github.com/xiaokangwang/VSign/signerVerify"
 	"io"
 	"io/ioutil"
+	"os"
 
 	"github.com/xiaokangwang/VSign/insmgr"
 )
@@ -19,6 +20,7 @@ func RequestForSign(githubToken,
 	version,
 	keyPassword, keyEncrypted string) (int64, string, error) {
 	data, id, err := GetReleaseFile(githubToken, projectOwner, projectRepo, version, "Release.unsigned")
+	fmt.Fprintln(os.Stderr, "Getting Release")
 	if err != nil {
 		return 0, "", err
 	}
@@ -28,15 +30,18 @@ func RequestForSign(githubToken,
 	//Check version and project
 	insall := insmgr.ReadAllIns(bytes.NewReader(sorted.Bytes()))
 	if !signerVerify.CheckVersionAndProject(insall, version, project) {
+		fmt.Fprintln(os.Stderr, "Cannot Check Constraint")
 		return 0, "", io.EOF
 	}
 	r := base64.NewDecoder(base64.StdEncoding, bytes.NewReader([]byte(keyEncrypted)))
 	keyorig, err := ioutil.ReadAll(r)
 	if err != nil {
+		fmt.Fprintln(os.Stderr, "Cannot Read key")
 		return 0, "", err
 	}
 	sr, err := sign.Sign(keyorig, keyPassword, sorted.Bytes())
 	if err != nil {
+		fmt.Fprintln(os.Stderr, "Cannot Sign")
 		return 0, "", err
 	}
 	sfpath := fmt.Sprintf("%v/%v.Release", project, version)
@@ -47,6 +52,7 @@ func RequestForSign(githubToken,
 	releasebuf.Write(sorted.Bytes())
 	url, err := CreateFileIfNotExist(githubToken, signerOwner, signerRepo, sfpath, "Signed Release", releasebuf.Bytes())
 	if err != nil {
+		fmt.Fprintln(os.Stderr, "Cannot Upload Data")
 		return 0, "", err
 	}
 	return id, url, nil
