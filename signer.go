@@ -4,13 +4,13 @@ import (
 	"bytes"
 	"encoding/base64"
 	"fmt"
-	"github.com/xiaokangwang/VSign/sign"
-	"github.com/xiaokangwang/VSign/signerVerify"
+	"github.com/v2fly/VSign/sign"
+	"github.com/v2fly/VSign/signerVerify"
 	"io"
 	"io/ioutil"
 	"os"
 
-	"github.com/xiaokangwang/VSign/insmgr"
+	"github.com/v2fly/VSign/insmgr"
 )
 
 func RequestForSign(githubToken,

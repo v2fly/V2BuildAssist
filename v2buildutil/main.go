@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/xiaokangwang/V2BuildAssist"
-	"github.com/xiaokangwang/VSign/insmgr"
-	"github.com/xiaokangwang/VSign/instimp"
+	"github.com/v2fly/V2BuildAssist"
+	"github.com/v2fly/VSign/insmgr"
+	"github.com/v2fly/VSign/instimp"
 	"io/ioutil"
 	"os"
 	"strconv"
