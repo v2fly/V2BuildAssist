@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
-	"github.com/v2fly/V2BuildAssist"
-	"github.com/v2fly/VSign/insmgr"
-	"github.com/v2fly/VSign/instimp"
 	"io/ioutil"
 	"os"
 	"strconv"
+
+	"github.com/v2fly/V2BuildAssist"
+	"github.com/v2fly/VSign/insmgr"
+	"github.com/v2fly/VSign/instimp"
 )
 
 func main() {
