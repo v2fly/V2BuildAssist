@@ -15,7 +15,7 @@ func main() {
 
 	outins := insmgr.NewOutputInsMgr(os.Stdout)
 
-	token := os.Getenv("GITHUB_TOKEN")
+	token := os.Getenv("GITHUB_PERSONAL_TOKEN")
 	owner := os.Getenv("GITHUB_REPO_OWNER")
 	name := os.Getenv("GITHUB_REPO_NAME")
 
