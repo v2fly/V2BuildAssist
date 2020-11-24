@@ -2,11 +2,12 @@ package V2BuildAssist
 
 import (
 	"context"
-	"github.com/google/go-github/v32/github"
-	"golang.org/x/oauth2"
 	"io"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/google/go-github/v32/github"
+	"golang.org/x/oauth2"
 )
 
 func CreateFileIfNotExist(accessToken, owner, repo, path, message string, content []byte) (string, error) {
@@ -71,6 +72,7 @@ func CreateCommentForCommit(accessToken, owner, repo, sha, message string) (stri
 func CreateCommentForPR(accessToken, owner, repo, message string, number int) (string, error) {
 	ctx := context.Background()
 	client := getclient(accessToken, ctx)
+
 	f, _, err := client.Issues.CreateComment(ctx, owner, repo, number, &github.IssueComment{Body: &message})
 	if err != nil {
 		return "", err
