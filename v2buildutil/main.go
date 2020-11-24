@@ -16,9 +16,9 @@ func main() {
 
 	outins := insmgr.NewOutputInsMgr(os.Stdout)
 
-	token := os.Getenv("GITHUB_PERSONAL_TOKEN")
-	owner := os.Getenv("GITHUB_REPO_OWNER")
-	name := os.Getenv("GITHUB_REPO_NAME")
+	token := os.Getenv("PERSONAL_TOKEN")
+	owner := os.Getenv("COMMENT_TARGETTED_REPO_OWNER")
+	name := os.Getenv("COMMENT_TARGETTED_REPO_NAME")
 
 	Sowner := os.Getenv("GITHUB_SREPO_OWNER")
 	Sname := os.Getenv("GITHUB_SREPO_NAME")
